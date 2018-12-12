@@ -1,0 +1,128 @@
+We need:
+- a state machine for application state
+  - init
+  - main menu
+  - instructions
+  - settings
+  - game
+  - shutdown
+- a main loop
+  - top-level engine calls & state machine iteration
+  - poll event loop for user input... dispatch events to state machine for handling
+- a game engine
+  - handles game logic
+    - how long until you get another bubble?
+    - what happens when a collision occurs?
+      - check for same-colored bubbles
+      - assign points
+      - remove bubbles
+    - check for bubbles that hit the edge
+    - check if there are any bubbles left
+    - start a new spinner, add to the multiplier
+    - take user input and filter it through the game rules to affect the game state
+- game state
+  - tracks the location and velocity of in-game objects
+- a physics engine
+  - Does all the integration/takes timesteps
+  - collision detection
+- a graphics engine
+  - Blits all the bubbles, etc. onto the screen
+  - handles animations
+  - handles screen transitions
+
+
+
+
+Classes:
+- AppStateMachine
+  - Members
+    - AppState _currentState
+    
+  - Methods
+    - transitionTo(AppState newState)
+
+
+- AppState
+  - Methods
+    - Initialize() - set up the state
+    - Deinitialize() - tear down the state
+    - Iterate()
+      - poll for and handle events
+      - tell physics engine to update state
+      - tell graphics engine to update display based on game state
+  - Subclasses
+    - Init
+    - MainMenu
+    - Instructions
+    - Settings
+    - Game
+    - Shutdown
+  
+- PhysicsEngine
+  - Members
+    - int dt (ms)
+  - incrementBubble(Bubble&)
+  - incrementSpinner(Spinner&)
+
+- Bubble
+  - Members
+    - int x (pixels)
+    - int y (pixels)
+    - double vx (pixels/ms)
+    - double vy (pixels/ms)
+    - enum color
+  - BubbleState enum
+    - OnDeck
+    - Loading
+    - Holding
+    - ReadyToFire
+    - Fired
+    - FailedToAttach
+    - Attached
+    - Burst
+
+- Spinner
+  - double theta
+  - double omega
+  - vector<bubbles>
+
+- GameState
+  - int multiplier
+  - int score
+  - Spinner
+  - currentBubble
+  - nextBubble
+  - enum FiringState
+    - Ready
+    - Loading
+    - Holding
+
+- MainWindowController / GameLogic
+  - Has a reference to the GraphicsEngine
+  - Has a reference to the game state
+  - Has a reference to the physics engine
+  - Has a reference to the current screen controller
+
+- MainWindowView / GraphicsEngine
+  - Has a reference to the GameState
+  - Based on the app state, layout the screen
+  - This is the top-level of the Views
+  - Clear the window
+  - Draw the screen view content
+  - Display the window
+
+- BaseScreenView
+  - MainMenuScreenView
+  - InstructionsScreenView
+  - SettingsScreenView
+  - GameScreenView
+    - Based on the game state, render game objects
+
+- BaseScreenController
+  - This is where events are polled
+  - Has a reference to the GameState
+  - Has a reference to the ScreenView
+  - MainMenuScreenController
+  - InstructionsScreenController
+  - SettingsScreenController
+  - GameScreenController
