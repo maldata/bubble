@@ -6,33 +6,43 @@ set(CMAKE_BUILD_TYPE Debug)
 
 find_package(Threads)
 
-
-
-find_library(SFML_WINDOW_LIB sfml-window)
-if(SFML_WINDOW_LIB STREQUAL "SFML_WINDOW_LIB-NOTFOUND")
-    message( FATAL_ERROR "libsfml-window was not found. Cannot proceed.")
+find_library(POCO_FNDN_LIB PocoFoundation)
+if(POCO_UTIL_LIB STREQUAL "POCO_FNDN_LIB-NOTFOUND")
+    message( FATAL_ERROR "libPocoFoundation was not found. Cannot proceed.")
 else()
-    message("libsfml-window.so found at ${SFML_WINDOW_LIB}")
+    message("libPocoFoundation.so found at ${POCO_FNDN_LIB}")
 endif()
 
-find_library(SFML_SYSTEM_LIB sfml-system)
-if(SFML_SYSTEM_LIB STREQUAL "SFML_SYSTEM_LIB-NOTFOUND")
-    message( FATAL_ERROR "libsfml-system was not found. Cannot proceed.")
+find_library(POCO_UTIL_LIB PocoUtil)
+if(POCO_UTIL_LIB STREQUAL "POCO_UTIL_LIB-NOTFOUND")
+    message( FATAL_ERROR "libPocoUtil was not found. Cannot proceed.")
 else()
-    message("libsfml-system.so found at ${SFML_SYSTEM_LIB}")
+    message("libPocoUtil.so found at ${POCO_UTIL_LIB}")
 endif()
 
-find_library(SFML_GRAPHICS_LIB sfml-graphics)
-if(SFML_GRAPHICS_LIB STREQUAL "SFML_GRAPHICS_LIB-NOTFOUND")
-    message( FATAL_ERROR "libsfml-graphics was not found. Cannot proceed.")
-else()
-    message("libsfml-graphics.so found at ${SFML_GRAPHICS_LIB}")
-endif()
+set(VIEWDIR src/view)
+set(VIEWLIB bubbleview)
+add_subdirectory(${VIEWDIR})
+link_directories(${VIEWDIR})
+include_directories(${VIEWDIR})
 
-set(SOURCE src/main.cpp)
+set(MODELDIR src/model)
+set(MODELLIB bubblemodel)
+add_subdirectory(${MODELDIR})
+link_directories(${MODELDIR})
+include_directories(${MODELDIR})
+
+set(CONTROLLERDIR src/controller)
+set(CONTROLLERLIB bubblecontroller)
+add_subdirectory(${CONTROLLERDIR})
+link_directories(${CONTROLLERDIR})
+include_directories(${CONTROLLERDIR})
+
+set(SOURCE src/main.cpp
+           src/bubbleapp.cpp)
 
 set(BUBBLE_EXE ${PROJECT_NAME})
 
 add_executable(${BUBBLE_EXE} ${SOURCE})
 
-target_link_libraries(${BUBBLE_EXE} ${SFML_GRAPHICS_LIB} ${SFML_SYSTEM_LIB} ${SFML_WINDOW_LIB})
+target_link_libraries(${BUBBLE_EXE} ${POCO_FNDN_LIB} ${POCO_UTIL_LIB} ${VIEWLIB} ${MODELLIB} ${CONTROLLERLIB})
