@@ -1,6 +1,9 @@
 #ifndef GAMELOGIC_H
 #define GAMELOGIC_H
 
+#include <Poco/BasicEvent.h>
+#include <Poco/EventArgs.h>
+
 #include "../view/mainview.h"
 #include "../model/gamestate.h"
 
@@ -14,6 +17,9 @@ namespace bubble
 
         void initialize();
         void uninitialize();
+        void handleEvents();
+
+        Poco::BasicEvent<Poco::EventArgs> shutdownRequested;
 
     private:
         MainView _view;

@@ -4,6 +4,8 @@
 #include <Poco/PatternFormatter.h>
 #include <Poco/FormattingChannel.h>
 #include <Poco/ConsoleChannel.h>
+#include <Poco/Delegate.h>
+#include <Poco/EventArgs.h>
 
 namespace bubble
 {
@@ -23,7 +25,9 @@ namespace bubble
         _keep_going = true;
         while (_keep_going)
         {
-
+            _logic.handleEvents();
+            // _logic.incrementTime()
+            // _logic.updateScreen()
         }
 
         return EXIT_OK;
@@ -42,6 +46,8 @@ namespace bubble
         setUpLogging();
 
         _logic.initialize();
+
+        _logic.shutdownRequested += Poco::Delegate<BubbleApp, Poco::EventArgs>(this, &BubbleApp::onShutdownRequested);
     }
 
     void BubbleApp::uninitialize()
@@ -64,5 +70,10 @@ namespace bubble
         _logger.setChannel(log_format_channel);
         log_format_channel->setChannel(log_console_channel);
         poco_information(_logger, Poco::format("Logger initialized at log level %d", _logger.getLevel()));
+    }
+
+    void BubbleApp::onShutdownRequested(const void* sender, Poco::EventArgs& args)
+    {
+        _keep_going = false;
     }
 }

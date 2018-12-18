@@ -3,6 +3,7 @@
 
 #include <Poco/Util/Application.h>
 #include <Poco/Logger.h>
+#include <Poco/EventArgs.h>
 
 #include "controller/gamelogic.h"
 
@@ -26,7 +27,7 @@ namespace bubble
         GameLogic _logic;
 
         void setUpLogging();
-
+        void onShutdownRequested(const void* sender, Poco::EventArgs& args);
     };
 }
 

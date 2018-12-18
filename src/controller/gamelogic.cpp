@@ -1,5 +1,7 @@
 #include "gamelogic.h"
 
+#include <Poco/EventArgs.h>
+
 namespace bubble
 {
     GameLogic::GameLogic()
@@ -20,5 +22,11 @@ namespace bubble
     void GameLogic::uninitialize()
     {
         _view.uninitialize();
+    }
+
+    void GameLogic::handleEvents()
+    {
+        Poco::EventArgs placeholder_args;
+        shutdownRequested.notify(this, placeholder_args);
     }
 }
