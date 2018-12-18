@@ -25,9 +25,7 @@ namespace bubble
         _keep_going = true;
         while (_keep_going)
         {
-            _logic.handleEvents();
-            // _logic.incrementTime()
-            // _logic.updateScreen()
+            _logic.iterate();
         }
 
         return EXIT_OK;
@@ -56,6 +54,8 @@ namespace bubble
         Poco::Util::Application::uninitialize();
 
         _logic.uninitialize();
+
+        _logic.shutdownRequested -= Poco::Delegate<BubbleApp, Poco::EventArgs>(this, &BubbleApp::onShutdownRequested);
     }
 
     void BubbleApp::setUpLogging()

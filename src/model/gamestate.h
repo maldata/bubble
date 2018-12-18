@@ -1,6 +1,8 @@
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
 
+#include <Poco/Logger.h>
+
 namespace bubble
 {
     class GameState
@@ -8,6 +10,12 @@ namespace bubble
     public:
         GameState();
         virtual ~GameState();
+
+        void initialize();
+        void uninitialize();
+
+    private:
+        Poco::Logger& _logger;
     };
 }
 

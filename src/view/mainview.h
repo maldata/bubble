@@ -3,6 +3,10 @@
 
 #include <SFML/Graphics.hpp>
 
+#include <Poco/BasicEvent.h>
+#include <Poco/EventArgs.h>
+#include <Poco/Logger.h>
+
 namespace bubble
 {
     class MainView
@@ -13,8 +17,12 @@ namespace bubble
 
         void initialize();
         void uninitialize();
+        void handleEvents();
+
+        Poco::BasicEvent<Poco::EventArgs> windowClosed;
 
     private:
+        Poco::Logger& _logger;
         sf::RenderWindow _window;
     };
 }
