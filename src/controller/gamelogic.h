@@ -4,6 +4,7 @@
 #include <Poco/BasicEvent.h>
 #include <Poco/EventArgs.h>
 #include <Poco/Logger.h>
+#include <Poco/SharedPtr.h>
 
 #include "../view/mainview.h"
 #include "../model/gamestate.h"
@@ -13,7 +14,7 @@ namespace bubble
     class GameLogic
     {
     public:
-        GameLogic();
+        GameLogic(GameState& game_state, MainView& view);
         virtual ~GameLogic();
 
         void initialize();
@@ -24,9 +25,8 @@ namespace bubble
 
     private:
         Poco::Logger& _logger;
-
-        MainView _view;
-        GameState _game_state;
+        GameState& _game_state;
+        MainView& _view;
 
         void onWindowClosed(const void* sender, Poco::EventArgs& args);
     };

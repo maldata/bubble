@@ -4,6 +4,7 @@
 #include <Poco/Util/Application.h>
 #include <Poco/Logger.h>
 #include <Poco/EventArgs.h>
+#include <Poco/SharedPtr.h>
 
 #include "controller/gamelogic.h"
 
@@ -24,7 +25,10 @@ namespace bubble
     private:
         Poco::Logger& _logger;
         bool _keep_going;
-        GameLogic _logic;
+
+        Poco::SharedPtr<GameLogic> _logic;
+        Poco::SharedPtr<MainView> _view;
+        Poco::SharedPtr<GameState> _game_state;
 
         void setUpLogging();
         void onShutdownRequested(const void* sender, Poco::EventArgs& args);

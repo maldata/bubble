@@ -5,8 +5,8 @@
 
 namespace bubble
 {
-    GameLogic::GameLogic()
-        : _logger(Poco::Logger::get("game"))
+    GameLogic::GameLogic(GameState& game_state, MainView& view)
+        : _logger(Poco::Logger::get("ctlr")), _game_state(game_state), _view(view)
     {
 
     }

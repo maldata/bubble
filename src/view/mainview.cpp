@@ -2,8 +2,8 @@
 
 namespace bubble
 {
-    MainView::MainView()
-        : _logger(Poco::Logger::get("view"))
+    MainView::MainView(GameState& game_state)
+        : _logger(Poco::Logger::get("view")), _game_state(game_state)
     {
     }
 
@@ -16,7 +16,7 @@ namespace bubble
     {
         poco_information(_logger, "Initializing the view.");
 
-        _window.create(sf::VideoMode(800, 600), "My window");
+        _window.create(sf::VideoMode(800, 600), "Bubble Spinner");
         _window.clear();
         _window.display();
     }

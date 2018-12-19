@@ -7,12 +7,14 @@
 #include <Poco/EventArgs.h>
 #include <Poco/Logger.h>
 
+#include "../model/gamestate.h"
+
 namespace bubble
 {
     class MainView
     {
     public:
-        MainView();
+        MainView(GameState& game_state);
         virtual ~MainView();
 
         void initialize();
@@ -23,6 +25,8 @@ namespace bubble
 
     private:
         Poco::Logger& _logger;
+        GameState& _game_state;
+
         sf::RenderWindow _window;
     };
 }
