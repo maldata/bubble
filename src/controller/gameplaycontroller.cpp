@@ -1,4 +1,4 @@
-#include "gamelogic.h"
+#include "gameplaycontroller.h"
 
 namespace bubble
 {
@@ -12,12 +12,4 @@ namespace bubble
     {
 
     }
-
-    void GameController::iterate()
-    {
-        _view.handleEvents();
-        // incrementTime()
-        // _view.updateScreen()
-    }
-
 }

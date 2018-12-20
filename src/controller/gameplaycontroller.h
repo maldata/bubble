@@ -12,8 +12,6 @@ namespace bubble
     public:
         GameController(GameState& game_state, MainView& view);
         virtual ~GameController();
-
-        void iterate() override;
     };
 }
 
