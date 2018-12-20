@@ -1,3 +1,4 @@
-add_library(${CONTROLLERLIB} gamelogic.cpp)
+add_library(${CONTROLLERLIB} controller.cpp
+                             gamelogic.cpp)
 
 target_link_libraries(${CONTROLLERLIB} ${MODELLIB} ${VIEWLIB})

@@ -25,7 +25,7 @@ namespace bubble
         _keep_going = true;
         while (_keep_going)
         {
-            _logic->iterate();
+            _current_controller->iterate();
         }
 
         return EXIT_OK;
@@ -46,11 +46,11 @@ namespace bubble
         // We don't want to create the model/view/controller until after the logging gets setup
         _game_state = new GameState();
         _view = new MainView(*_game_state);
-        _logic = new GameLogic(*_game_state, *_view);
+        _current_controller = new Controller(*_game_state, *_view);
 
-        _logic->initialize();
+        _current_controller->initialize();
 
-        _logic->shutdownRequested += Poco::Delegate<BubbleApp, Poco::EventArgs>(this, &BubbleApp::onShutdownRequested);
+        _current_controller->shutdownRequested += Poco::Delegate<BubbleApp, Poco::EventArgs>(this, &BubbleApp::onShutdownRequested);
     }
 
     void BubbleApp::uninitialize()
@@ -58,9 +58,9 @@ namespace bubble
         poco_information(_logger, "Bubble Spinner stopping...");
         Poco::Util::Application::uninitialize();
 
-        _logic->uninitialize();
+        _current_controller->uninitialize();
 
-        _logic->shutdownRequested -= Poco::Delegate<BubbleApp, Poco::EventArgs>(this, &BubbleApp::onShutdownRequested);
+        _current_controller->shutdownRequested -= Poco::Delegate<BubbleApp, Poco::EventArgs>(this, &BubbleApp::onShutdownRequested);
     }
 
     void BubbleApp::setUpLogging()

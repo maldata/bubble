@@ -6,7 +6,7 @@
 #include <Poco/EventArgs.h>
 #include <Poco/SharedPtr.h>
 
-#include "controller/gamelogic.h"
+#include "controller/controller.h"
 
 namespace bubble
 {
@@ -26,7 +26,7 @@ namespace bubble
         Poco::Logger& _logger;
         bool _keep_going;
 
-        Poco::SharedPtr<GameLogic> _logic;
+        Poco::SharedPtr<Controller> _current_controller;
         Poco::SharedPtr<MainView> _view;
         Poco::SharedPtr<GameState> _game_state;
 

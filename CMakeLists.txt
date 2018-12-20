@@ -20,6 +20,12 @@ else()
     message("libPocoUtil.so found at ${POCO_UTIL_LIB}")
 endif()
 
+set(SMDIR src/statemachine)
+set(SMLIB bubblesm)
+add_subdirectory(${SMDIR})
+link_directories(${SMDIR})
+include_directories(${SMDIR})
+
 set(VIEWDIR src/view)
 set(VIEWLIB bubbleview)
 add_subdirectory(${VIEWDIR})
