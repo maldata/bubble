@@ -7,14 +7,14 @@
 #include <Poco/SharedPtr.h>
 
 #include "../view/mainview.h"
-#include "../model/gamestate.h"
+#include "../model/model.h"
 
 namespace bubble
 {
     class Controller
     {
     public:
-        Controller(GameState& game_state, MainView& view);
+        Controller(Model& model, MainView& view);
         virtual ~Controller();
 
         virtual void initialize();
@@ -25,7 +25,7 @@ namespace bubble
 
     protected:
         Poco::Logger& _logger;
-        GameState& _game_state;
+        Model& _model;
         MainView& _view;
 
         void onWindowClosed(const void* sender, Poco::EventArgs& args);

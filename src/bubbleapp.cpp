@@ -44,7 +44,7 @@ namespace bubble
         setUpLogging();
 
         // We don't want to create the model/view/controller until after the logging gets setup
-        _game_state = new GameState();
+        _game_state = new Model();
         _view = new MainView(*_game_state);
         _current_controller = new Controller(*_game_state, *_view);
 

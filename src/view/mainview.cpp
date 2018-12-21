@@ -1,8 +1,10 @@
 #include "mainview.h"
 
+#include "../model/model.h"
+
 namespace bubble
 {
-    MainView::MainView(GameState& game_state)
+    MainView::MainView(Model& game_state)
         : _logger(Poco::Logger::get("view")), _game_state(game_state)
     {
     }

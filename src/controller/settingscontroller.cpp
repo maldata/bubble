@@ -2,7 +2,7 @@
 
 namespace bubble
 {
-    SettingsController::SettingsController(GameState& game_state, MainView& view)
+    SettingsController::SettingsController(Model& game_state, MainView& view)
         : Controller(game_state, view)
     {
 

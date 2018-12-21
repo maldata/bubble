@@ -1,12 +1,13 @@
 #include "controller.h"
+#include "../model/model.h"
 
 #include <Poco/EventArgs.h>
 #include <Poco/Delegate.h>
 
 namespace bubble
 {
-    Controller::Controller(GameState& game_state, MainView& view)
-        : _logger(Poco::Logger::get("ctlr")), _game_state(game_state), _view(view)
+    Controller::Controller(Model& model, MainView& view)
+        : _logger(Poco::Logger::get("ctlr")), _model(model), _view(view)
     {
 
     }

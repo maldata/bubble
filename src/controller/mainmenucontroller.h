@@ -3,14 +3,14 @@
 
 #include "controller.h"
 #include "../view/mainview.h"
-#include "../model/gamestate.h"
+#include "../model/model.h"
 
 namespace bubble
 {
     class MainMenuController : public Controller
     {
     public:
-        MainMenuController(GameState& game_state, MainView& view);
+        MainMenuController(Model& game_state, MainView& view);
         virtual ~MainMenuController();
     };
 }

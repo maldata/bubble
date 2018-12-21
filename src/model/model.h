@@ -1,15 +1,15 @@
-#ifndef GAMESTATE_H
-#define GAMESTATE_H
+#ifndef MODEL_H
+#define MODEL_H
 
 #include <Poco/Logger.h>
 
 namespace bubble
 {
-    class GameState
+    class Model
     {
     public:
-        GameState();
-        virtual ~GameState();
+        Model();
+        virtual ~Model();
 
         void initialize();
         void uninitialize();
@@ -19,4 +19,4 @@ namespace bubble
     };
 }
 
-#endif // GAMESTATE_H
+#endif // MODEL_H

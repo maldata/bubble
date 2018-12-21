@@ -2,7 +2,7 @@
 
 namespace bubble
 {
-    MainMenuController::MainMenuController(GameState& game_state, MainView& view)
+    MainMenuController::MainMenuController(Model& game_state, MainView& view)
         : Controller(game_state, view)
     {
 
