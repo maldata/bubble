@@ -6,6 +6,7 @@
 #include <Poco/BasicEvent.h>
 #include <Poco/EventArgs.h>
 #include <Poco/Logger.h>
+#include <Poco/SharedPtr.h>
 
 #include "../model/model.h"
 
@@ -14,7 +15,7 @@ namespace bubble
     class MainView
     {
     public:
-        MainView(Model& game_state);
+        MainView(Poco::SharedPtr<Model> model);
         virtual ~MainView();
 
         void initialize();
@@ -25,7 +26,8 @@ namespace bubble
 
     private:
         Poco::Logger& _logger;
-        Model& _game_state;
+
+        Poco::SharedPtr<Model> _model;
 
         sf::RenderWindow _window;
     };

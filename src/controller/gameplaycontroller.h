@@ -10,7 +10,7 @@ namespace bubble
     class GameController : public Controller
     {
     public:
-        GameController(Model& game_state, MainView& view);
+        GameController();
         virtual ~GameController();
     };
 }

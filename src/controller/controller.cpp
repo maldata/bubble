@@ -6,10 +6,11 @@
 
 namespace bubble
 {
-    Controller::Controller(Model& model, MainView& view)
-        : _logger(Poco::Logger::get("ctlr")), _model(model), _view(view)
+    Controller::Controller()
+        : _logger(Poco::Logger::get("ctlr"))
     {
-
+        _model = new Model();
+        _view = new MainView(_model);
     }
 
     Controller::~Controller()
@@ -21,23 +22,26 @@ namespace bubble
     {
         poco_information(_logger, "Initializing the controller.");
 
-        _view.initialize();
+        _model->initialize();
+        _view->initialize();
 
-        _view.windowClosed += Poco::Delegate<Controller, Poco::EventArgs>(this, &Controller::onWindowClosed);
+        _view->windowClosed += Poco::Delegate<Controller, Poco::EventArgs>(this, &Controller::onWindowClosed);
     }
 
     void Controller::uninitialize()
     {
         poco_information(_logger, "Un-initializing the controller.");
 
-        _view.uninitialize();
+        _view->uninitialize();
+        _model->uninitialize();
 
-        _view.windowClosed -= Poco::Delegate<Controller, Poco::EventArgs>(this, &Controller::onWindowClosed);
+        _view->windowClosed -= Poco::Delegate<Controller, Poco::EventArgs>(this, &Controller::onWindowClosed);
     }
 
     void Controller::iterate()
     {
-        _view.handleEvents();
+        // TODO: maybe this should be more like "GET events."
+        _view->handleEvents();
         // incrementTime()
         // _view.updateScreen()
     }

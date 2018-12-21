@@ -14,7 +14,7 @@ namespace bubble
     class Controller
     {
     public:
-        Controller(Model& model, MainView& view);
+        Controller();
         virtual ~Controller();
 
         virtual void initialize();
@@ -25,8 +25,9 @@ namespace bubble
 
     protected:
         Poco::Logger& _logger;
-        Model& _model;
-        MainView& _view;
+
+        Poco::SharedPtr<Model> _model;
+        Poco::SharedPtr<MainView> _view;
 
         void onWindowClosed(const void* sender, Poco::EventArgs& args);
     };

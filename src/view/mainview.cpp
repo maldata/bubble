@@ -4,8 +4,8 @@
 
 namespace bubble
 {
-    MainView::MainView(Model& game_state)
-        : _logger(Poco::Logger::get("view")), _game_state(game_state)
+    MainView::MainView(Poco::SharedPtr<Model> model)
+        : _logger(Poco::Logger::get("view")), _model(model)
     {
     }
 

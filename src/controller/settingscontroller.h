@@ -10,7 +10,7 @@ namespace bubble
     class SettingsController : public Controller
     {
     public:
-        SettingsController(Model& game_state, MainView& view);
+        SettingsController();
         virtual ~SettingsController();
     };
 }
