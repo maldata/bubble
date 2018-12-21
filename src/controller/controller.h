@@ -6,7 +6,7 @@
 #include <Poco/Logger.h>
 #include <Poco/SharedPtr.h>
 
-#include "../view/mainview.h"
+#include "../view/view.h"
 #include "../model/model.h"
 
 namespace bubble
@@ -27,7 +27,7 @@ namespace bubble
         Poco::Logger& _logger;
 
         Poco::SharedPtr<Model> _model;
-        Poco::SharedPtr<MainView> _view;
+        Poco::SharedPtr<View> _view;
 
         void onWindowClosed(const void* sender, Poco::EventArgs& args);
     };

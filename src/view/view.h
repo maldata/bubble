@@ -1,5 +1,5 @@
-#ifndef MAINVIEW_H
-#define MAINVIEW_H
+#ifndef VIEW_H
+#define VIEW_H
 
 #include <SFML/Graphics.hpp>
 
@@ -12,11 +12,11 @@
 
 namespace bubble
 {
-    class MainView
+    class View
     {
     public:
-        MainView(Poco::SharedPtr<Model> model);
-        virtual ~MainView();
+        View(Poco::SharedPtr<Model> model);
+        virtual ~View();
 
         void initialize();
         void uninitialize();
@@ -33,7 +33,7 @@ namespace bubble
     };
 }
 
-#endif // MAINVIEW_H
+#endif // VIEW_H
 
 
 //#include <SFML/Graphics.hpp>

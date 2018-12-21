@@ -1,20 +1,20 @@
-#include "mainview.h"
+#include "view.h"
 
 #include "../model/model.h"
 
 namespace bubble
 {
-    MainView::MainView(Poco::SharedPtr<Model> model)
+    View::View(Poco::SharedPtr<Model> model)
         : _logger(Poco::Logger::get("view")), _model(model)
     {
     }
 
-    MainView::~MainView()
+    View::~View()
     {
 
     }
 
-    void MainView::initialize()
+    void View::initialize()
     {
         poco_information(_logger, "Initializing the view.");
 
@@ -23,12 +23,12 @@ namespace bubble
         _window.display();
     }
 
-    void MainView::uninitialize()
+    void View::uninitialize()
     {
         poco_information(_logger, "Un-initializing the view.");
     }
 
-    void MainView::handleEvents()
+    void View::handleEvents()
     {
         sf::Event event;
         while (_window.pollEvent(event))

@@ -19,6 +19,7 @@ else()
     message("libsfml-graphics.so found at ${SFML_GRAPHICS_LIB}")
 endif()
 
-add_library(${VIEWLIB} mainview.cpp checkbox.cpp)
+add_library(${VIEWLIB} view.cpp
+                       checkbox.cpp)
 
 target_link_libraries(${VIEWLIB} ${SFML_WINDOW_LIB} ${SFML_SYSTEM_LIB} ${SFML_GRAPHICS_LIB})

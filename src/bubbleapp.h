@@ -8,7 +8,7 @@
 
 #include "controller/controller.h"
 #include "model/model.h"
-#include "view/mainview.h"
+#include "view/view.h"
 
 namespace bubble
 {
@@ -29,7 +29,7 @@ namespace bubble
         bool _keep_going;
 
         Poco::SharedPtr<Controller> _current_controller;
-        Poco::SharedPtr<MainView> _view;
+        Poco::SharedPtr<View> _view;
         Poco::SharedPtr<Model> _game_state;
 
         void setUpLogging();

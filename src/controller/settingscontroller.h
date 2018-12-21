@@ -2,7 +2,7 @@
 #define SETTINGSCONTROLLER_H
 
 #include "controller.h"
-#include "../view/mainview.h"
+#include "../view/view.h"
 #include "../model/model.h"
 
 namespace bubble

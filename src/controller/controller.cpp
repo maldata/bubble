@@ -10,7 +10,7 @@ namespace bubble
         : _logger(Poco::Logger::get("ctlr"))
     {
         _model = new Model();
-        _view = new MainView(_model);
+        _view = new View(_model);
     }
 
     Controller::~Controller()
