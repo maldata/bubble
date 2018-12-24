@@ -45,6 +45,7 @@ namespace bubble
 
         // We don't want to create the model/view/controller until after the logging gets setup
         _window.create(sf::VideoMode(800, 600), "Bubble Spinner");
+        _window.setVerticalSyncEnabled(true);
 
         _main_menu_controller = new MainMenuController(_window);
         _settings_controller = new SettingsController(_window);
