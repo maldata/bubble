@@ -7,6 +7,8 @@
 #include <Poco/Delegate.h>
 #include <Poco/EventArgs.h>
 
+#include "controller/mainmenucontroller.h"
+
 namespace bubble
 {
     BubbleApp::BubbleApp()
@@ -44,10 +46,13 @@ namespace bubble
         setUpLogging();
 
         // We don't want to create the model/view/controller until after the logging gets setup
-        _current_controller = new Controller();
+        _window.create(sf::VideoMode(800, 600), "Bubble Spinner");
 
+        _main_menu_controller = new MainMenuController(_window);
+        _settings_controller = new SettingsController(_window);
+
+        _current_controller = _main_menu_controller;
         _current_controller->initialize();
-
         _current_controller->shutdownRequested += Poco::Delegate<BubbleApp, Poco::EventArgs>(this, &BubbleApp::onShutdownRequested);
     }
 

@@ -6,7 +6,11 @@
 #include <Poco/EventArgs.h>
 #include <Poco/SharedPtr.h>
 
+#include <SFML/Graphics.hpp>
+
 #include "controller/controller.h"
+#include "controller/mainmenucontroller.h"
+#include "controller/settingscontroller.h"
 #include "model/model.h"
 #include "view/view.h"
 
@@ -28,9 +32,10 @@ namespace bubble
         Poco::Logger& _logger;
         bool _keep_going;
 
+        sf::RenderWindow _window;
         Poco::SharedPtr<Controller> _current_controller;
-        Poco::SharedPtr<View> _view;
-        Poco::SharedPtr<Model> _game_state;
+        Poco::SharedPtr<MainMenuController> _main_menu_controller;
+        Poco::SharedPtr<SettingsController> _settings_controller;
 
         void setUpLogging();
         void onShutdownRequested(const void* sender, Poco::EventArgs& args);

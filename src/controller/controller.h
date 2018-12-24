@@ -20,6 +20,7 @@ namespace bubble
         virtual void initialize();
         virtual void uninitialize();
         virtual void iterate();
+        virtual void handleEvents(EventList& list) = 0;
 
         Poco::BasicEvent<Poco::EventArgs> shutdownRequested;
 
@@ -28,8 +29,6 @@ namespace bubble
 
         Poco::SharedPtr<Model> _model;
         Poco::SharedPtr<View> _view;
-
-        void onWindowClosed(const void* sender, Poco::EventArgs& args);
     };
 }
 

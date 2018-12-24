@@ -10,8 +10,10 @@ namespace bubble
     class MainMenuController : public Controller
     {
     public:
-        MainMenuController();
+        MainMenuController(sf::RenderWindow& window);
         virtual ~MainMenuController();
+
+        virtual void handleEvents(EventList& list) override;
     };
 }
 

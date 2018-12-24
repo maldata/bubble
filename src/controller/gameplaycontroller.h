@@ -10,8 +10,10 @@ namespace bubble
     class GameController : public Controller
     {
     public:
-        GameController();
+        GameController(sf::RenderWindow& window);
         virtual ~GameController();
+
+        virtual void handleEvents(EventList& list) override;
     };
 }
 

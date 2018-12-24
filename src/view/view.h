@@ -1,6 +1,8 @@
 #ifndef VIEW_H
 #define VIEW_H
 
+#include "../model/model.h"
+
 #include <SFML/Graphics.hpp>
 
 #include <Poco/BasicEvent.h>
@@ -8,28 +10,30 @@
 #include <Poco/Logger.h>
 #include <Poco/SharedPtr.h>
 
-#include "../model/model.h"
+#include <forward_list>
 
 namespace bubble
 {
+    typedef std::forward_list<sf::Event> EventList;
+
     class View
     {
     public:
-        View(Poco::SharedPtr<Model> model);
+        View(sf::RenderWindow& window, Poco::SharedPtr<Model> model);
         virtual ~View();
 
         void initialize();
         void uninitialize();
-        void handleEvents();
+        int getEvents(EventList& list);
+        virtual void updateScreen() = 0;
 
         Poco::BasicEvent<Poco::EventArgs> windowClosed;
 
-    private:
+    protected:
         Poco::Logger& _logger;
+        sf::RenderWindow& _window;
 
         Poco::SharedPtr<Model> _model;
-
-        sf::RenderWindow _window;
     };
 }
 

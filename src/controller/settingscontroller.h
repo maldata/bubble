@@ -10,8 +10,10 @@ namespace bubble
     class SettingsController : public Controller
     {
     public:
-        SettingsController();
+        SettingsController(sf::RenderWindow& window);
         virtual ~SettingsController();
+
+        virtual void handleEvents(EventList& list) override;
     };
 }
 

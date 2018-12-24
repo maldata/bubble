@@ -1,6 +1,8 @@
 #include "controller.h"
 #include "../model/model.h"
 
+#include <SFML/Window.hpp>
+
 #include <Poco/EventArgs.h>
 #include <Poco/Delegate.h>
 
@@ -9,8 +11,7 @@ namespace bubble
     Controller::Controller()
         : _logger(Poco::Logger::get("ctlr"))
     {
-        _model = new Model();
-        _view = new View(_model);
+
     }
 
     Controller::~Controller()
@@ -24,8 +25,6 @@ namespace bubble
 
         _model->initialize();
         _view->initialize();
-
-        _view->windowClosed += Poco::Delegate<Controller, Poco::EventArgs>(this, &Controller::onWindowClosed);
     }
 
     void Controller::uninitialize()
@@ -34,21 +33,18 @@ namespace bubble
 
         _view->uninitialize();
         _model->uninitialize();
-
-        _view->windowClosed -= Poco::Delegate<Controller, Poco::EventArgs>(this, &Controller::onWindowClosed);
     }
 
     void Controller::iterate()
     {
-        // TODO: maybe this should be more like "GET events."
-        _view->handleEvents();
-        // incrementTime()
-        // _view.updateScreen()
-    }
+        EventList list;
+        int num_events = _view->getEvents(list);
+        if (num_events > 0)
+        {
+            handleEvents(list);
+        }
 
-    void Controller::onWindowClosed(const void* sender, Poco::EventArgs& args)
-    {
-        Poco::EventArgs placeholder_args;
-        shutdownRequested.notify(this, placeholder_args);
+        // incrementTime()
+        _view->updateScreen();
     }
 }

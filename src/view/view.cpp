@@ -4,8 +4,8 @@
 
 namespace bubble
 {
-    View::View(Poco::SharedPtr<Model> model)
-        : _logger(Poco::Logger::get("view")), _model(model)
+    View::View(sf::RenderWindow& window, Poco::SharedPtr<Model> model)
+        : _logger(Poco::Logger::get("view")), _window(window), _model(model)
     {
     }
 
@@ -17,10 +17,6 @@ namespace bubble
     void View::initialize()
     {
         poco_information(_logger, "Initializing the view.");
-
-        _window.create(sf::VideoMode(800, 600), "Bubble Spinner");
-        _window.clear();
-        _window.display();
     }
 
     void View::uninitialize()
@@ -28,17 +24,17 @@ namespace bubble
         poco_information(_logger, "Un-initializing the view.");
     }
 
-    void View::handleEvents()
+    int View::getEvents(EventList& list)
     {
         sf::Event event;
+        int count = 0;
+
         while (_window.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed)
-            {
-                _window.close();
-                Poco::EventArgs args;
-                windowClosed.notify(this, args);
-            }
+            sf::Event copiedEvent = event;
+            list.push_front(copiedEvent);
+            count++;
         }
+        return count;
     }
 }
