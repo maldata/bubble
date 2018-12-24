@@ -55,6 +55,7 @@ namespace bubble
         connectEvents();
 
         // Set the initial controller and initialize it
+        _current_screen_type = ScreenType::MainMenu;
         _current_controller = _main_menu_controller;
         _current_controller->initialize();
     }
@@ -107,9 +108,14 @@ namespace bubble
 
     void BubbleApp::onScreenChangeRequested(const void* sender, ScreenType& new_screen)
     {
-        _current_controller->uninitialize();
+        if (new_screen == _current_screen_type)
+        {
+            return;
+        }
+        _current_screen_type = new_screen;
 
-        switch (new_screen)
+        _current_controller->uninitialize();
+        switch (_current_screen_type)
         {
         case ScreenType::MainMenu:
             _current_controller = _main_menu_controller;

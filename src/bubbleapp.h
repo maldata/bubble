@@ -33,6 +33,7 @@ namespace bubble
         bool _keep_going;
 
         sf::RenderWindow _window;
+        ScreenType _current_screen_type;
         Poco::SharedPtr<Controller> _current_controller;
         Poco::SharedPtr<MainMenuController> _main_menu_controller;
         Poco::SharedPtr<SettingsController> _settings_controller;

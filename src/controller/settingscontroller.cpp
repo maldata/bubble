@@ -31,6 +31,18 @@ namespace bubble
                 ScreenType next_screen = ScreenType::MainMenu;
                 screenChangeRequested.notify(this, next_screen);
             }
+            if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Num2))
+            {
+                poco_information(_logger, "Pressed 2");
+                ScreenType next_screen = ScreenType::Settings;
+                screenChangeRequested.notify(this, next_screen);
+            }
+            if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Num3))
+            {
+                poco_information(_logger, "Pressed 3");
+                ScreenType next_screen = ScreenType::Gameplay;
+                screenChangeRequested.notify(this, next_screen);
+            }
         }
     }
 }
