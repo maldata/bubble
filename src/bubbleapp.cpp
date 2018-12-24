@@ -108,18 +108,20 @@ namespace bubble
     void BubbleApp::onScreenChangeRequested(const void* sender, ScreenType& new_screen)
     {
         _current_controller->uninitialize();
-        if (new_screen == ScreenType::MainMenu)
+
+        switch (new_screen)
         {
+        case ScreenType::MainMenu:
             _current_controller = _main_menu_controller;
-        }
-        else if (new_screen == ScreenType::Settings)
-        {
+            break;
+        case ScreenType::Settings:
             _current_controller = _settings_controller;
-        }
-        else
-        {
+            break;
+        default:
             poco_warning(_logger, "Something's weird in BubbleApp::onScreenChangeRequested");
+            break;
         }
+
         _current_controller->initialize();
     }
 }
