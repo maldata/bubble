@@ -18,4 +18,14 @@ namespace bubble
         _window.clear(sf::Color::Blue);
         _window.display();
     }
+
+    void SettingsView::handleMouseMove(int x, int y)
+    {
+
+    }
+
+    void SettingsView::handleLeftClick(int x, int y)
+    {
+
+    }
 }

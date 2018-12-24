@@ -43,6 +43,14 @@ namespace bubble
                 ScreenType next_screen = ScreenType::Gameplay;
                 screenChangeRequested.notify(this, next_screen);
             }
+            if (event.type == sf::Event::MouseMoved)
+            {
+                _view->handleMouseMove(event.mouseMove.x, event.mouseMove.y);
+            }
+            if ((event.type == sf::Event::MouseButtonPressed) && (event.mouseButton.button == sf::Mouse::Left))
+            {
+                _view->handleLeftClick(event.mouseButton.x, event.mouseButton.y);
+            }
         }
     }
 }

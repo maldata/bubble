@@ -11,7 +11,9 @@ namespace bubble
         SettingsView(sf::RenderWindow& window, Poco::SharedPtr<Model> model);
         virtual ~SettingsView();
 
-        virtual void updateScreen() override;
+        void updateScreen() override;
+        void handleMouseMove(int x, int y) override;
+        void handleLeftClick(int x, int y) override;
     };
 }
 

@@ -11,7 +11,9 @@ namespace bubble
         GameplayView(sf::RenderWindow& window, Poco::SharedPtr<Model> model);
         virtual ~GameplayView();
 
-        virtual void updateScreen() override;
+        void updateScreen() override;
+        void handleMouseMove(int x, int y) override;
+        void handleLeftClick(int x, int y) override;
     };
 }
 

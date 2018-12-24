@@ -18,4 +18,14 @@ namespace bubble
         _window.clear(sf::Color::Green);
         _window.display();
     }
+
+    void GameplayView::handleMouseMove(int x, int y)
+    {
+
+    }
+
+    void GameplayView::handleLeftClick(int x, int y)
+    {
+
+    }
 }

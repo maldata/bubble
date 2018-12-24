@@ -18,5 +18,15 @@ namespace bubble
         _window.clear(sf::Color::White);
         _window.display();
     }
+
+    void MainMenuView::handleMouseMove(int x, int y)
+    {
+
+    }
+
+    void MainMenuView::handleLeftClick(int x, int y)
+    {
+
+    }
 }
 

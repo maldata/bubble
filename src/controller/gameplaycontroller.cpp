@@ -46,7 +46,7 @@ namespace bubble
             }
             if (event.type == sf::Event::MouseMoved)
             {
-                poco_information_f2(_logger, "Mouse coords: (%d, %d)", event.mouseMove.x, event.mouseMove.y);
+                _view->handleMouseMove(event.mouseMove.x, event.mouseMove.y);
             }
         }
     }
