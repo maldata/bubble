@@ -38,7 +38,10 @@ namespace bubble
         Poco::SharedPtr<SettingsController> _settings_controller;
 
         void setUpLogging();
+        void connectEvents();
+        void disconnectEvents();
         void onShutdownRequested(const void* sender, Poco::EventArgs& args);
+        void onScreenChangeRequested(const void* sender, ScreenType& new_screen);
     };
 }
 

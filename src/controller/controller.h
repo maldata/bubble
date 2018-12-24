@@ -11,6 +11,14 @@
 
 namespace bubble
 {
+    enum ScreenType
+    {
+        MainMenu,
+        Settings,
+        Gameplay,
+        NUM_SCREEN_TYPES
+    };
+
     class Controller
     {
     public:
@@ -23,6 +31,7 @@ namespace bubble
         virtual void handleEvents(EventList& list) = 0;
 
         Poco::BasicEvent<Poco::EventArgs> shutdownRequested;
+        Poco::BasicEvent<ScreenType> screenChangeRequested;
 
     protected:
         Poco::Logger& _logger;

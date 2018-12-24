@@ -27,7 +27,9 @@ namespace bubble
             }
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Num1))
             {
-
+                poco_information(_logger, "Pressed 1");
+                ScreenType next_screen = ScreenType::MainMenu;
+                screenChangeRequested.notify(this, next_screen);
             }
         }
     }

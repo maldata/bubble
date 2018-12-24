@@ -51,9 +51,12 @@ namespace bubble
         _main_menu_controller = new MainMenuController(_window);
         _settings_controller = new SettingsController(_window);
 
+        // And now that we've created our controllers, connect events
+        connectEvents();
+
+        // Set the initial controller and initialize it
         _current_controller = _main_menu_controller;
         _current_controller->initialize();
-        _current_controller->shutdownRequested += Poco::Delegate<BubbleApp, Poco::EventArgs>(this, &BubbleApp::onShutdownRequested);
     }
 
     void BubbleApp::uninitialize()
@@ -61,9 +64,8 @@ namespace bubble
         poco_information(_logger, "Bubble Spinner stopping...");
         Poco::Util::Application::uninitialize();
 
+        disconnectEvents();
         _current_controller->uninitialize();
-
-        _current_controller->shutdownRequested -= Poco::Delegate<BubbleApp, Poco::EventArgs>(this, &BubbleApp::onShutdownRequested);
     }
 
     void BubbleApp::setUpLogging()
@@ -80,8 +82,44 @@ namespace bubble
         poco_information(_logger, Poco::format("Logger initialized at log level %d", _logger.getLevel()));
     }
 
+    void BubbleApp::connectEvents()
+    {
+        _main_menu_controller->shutdownRequested += Poco::Delegate<BubbleApp, Poco::EventArgs>(this, &BubbleApp::onShutdownRequested);
+        _main_menu_controller->screenChangeRequested += Poco::Delegate<BubbleApp, ScreenType>(this, &BubbleApp::onScreenChangeRequested);
+
+        _settings_controller->shutdownRequested += Poco::Delegate<BubbleApp, Poco::EventArgs>(this, &BubbleApp::onShutdownRequested);
+        _settings_controller->screenChangeRequested += Poco::Delegate<BubbleApp, ScreenType>(this, &BubbleApp::onScreenChangeRequested);
+    }
+
+    void BubbleApp::disconnectEvents()
+    {
+        _main_menu_controller->shutdownRequested -= Poco::Delegate<BubbleApp, Poco::EventArgs>(this, &BubbleApp::onShutdownRequested);
+        _main_menu_controller->screenChangeRequested -= Poco::Delegate<BubbleApp, ScreenType>(this, &BubbleApp::onScreenChangeRequested);
+
+        _settings_controller->shutdownRequested -= Poco::Delegate<BubbleApp, Poco::EventArgs>(this, &BubbleApp::onShutdownRequested);
+        _settings_controller->screenChangeRequested -= Poco::Delegate<BubbleApp, ScreenType>(this, &BubbleApp::onScreenChangeRequested);
+    }
+
     void BubbleApp::onShutdownRequested(const void* sender, Poco::EventArgs& args)
     {
         _keep_going = false;
+    }
+
+    void BubbleApp::onScreenChangeRequested(const void* sender, ScreenType& new_screen)
+    {
+        _current_controller->uninitialize();
+        if (new_screen == ScreenType::MainMenu)
+        {
+            _current_controller = _main_menu_controller;
+        }
+        else if (new_screen == ScreenType::Settings)
+        {
+            _current_controller = _settings_controller;
+        }
+        else
+        {
+            poco_warning(_logger, "Something's weird in BubbleApp::onScreenChangeRequested");
+        }
+        _current_controller->initialize();
     }
 }
