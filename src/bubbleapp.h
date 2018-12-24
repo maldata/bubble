@@ -1,18 +1,19 @@
 #ifndef BUBBLEAPP_H
 #define BUBBLEAPP_H
 
+#include "controller/controller.h"
+#include "controller/mainmenucontroller.h"
+#include "controller/settingscontroller.h"
+#include "controller/gameplaycontroller.h"
+#include "model/model.h"
+#include "view/view.h"
+
 #include <Poco/Util/Application.h>
 #include <Poco/Logger.h>
 #include <Poco/EventArgs.h>
 #include <Poco/SharedPtr.h>
 
 #include <SFML/Graphics.hpp>
-
-#include "controller/controller.h"
-#include "controller/mainmenucontroller.h"
-#include "controller/settingscontroller.h"
-#include "model/model.h"
-#include "view/view.h"
 
 namespace bubble
 {
@@ -37,6 +38,7 @@ namespace bubble
         Poco::SharedPtr<Controller> _current_controller;
         Poco::SharedPtr<MainMenuController> _main_menu_controller;
         Poco::SharedPtr<SettingsController> _settings_controller;
+        Poco::SharedPtr<GameplayController> _gameplay_controller;
 
         void setUpLogging();
         void connectEvents();

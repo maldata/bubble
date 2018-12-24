@@ -7,8 +7,6 @@
 #include <Poco/Delegate.h>
 #include <Poco/EventArgs.h>
 
-#include "controller/mainmenucontroller.h"
-
 namespace bubble
 {
     BubbleApp::BubbleApp()
@@ -50,6 +48,7 @@ namespace bubble
 
         _main_menu_controller = new MainMenuController(_window);
         _settings_controller = new SettingsController(_window);
+        _gameplay_controller = new GameplayController(_window);
 
         // And now that we've created our controllers, connect events
         connectEvents();
@@ -90,6 +89,9 @@ namespace bubble
 
         _settings_controller->shutdownRequested += Poco::Delegate<BubbleApp, Poco::EventArgs>(this, &BubbleApp::onShutdownRequested);
         _settings_controller->screenChangeRequested += Poco::Delegate<BubbleApp, ScreenType>(this, &BubbleApp::onScreenChangeRequested);
+
+        _gameplay_controller->shutdownRequested += Poco::Delegate<BubbleApp, Poco::EventArgs>(this, &BubbleApp::onShutdownRequested);
+        _gameplay_controller->screenChangeRequested += Poco::Delegate<BubbleApp, ScreenType>(this, &BubbleApp::onScreenChangeRequested);
     }
 
     void BubbleApp::disconnectEvents()
@@ -99,6 +101,9 @@ namespace bubble
 
         _settings_controller->shutdownRequested -= Poco::Delegate<BubbleApp, Poco::EventArgs>(this, &BubbleApp::onShutdownRequested);
         _settings_controller->screenChangeRequested -= Poco::Delegate<BubbleApp, ScreenType>(this, &BubbleApp::onScreenChangeRequested);
+
+        _gameplay_controller->shutdownRequested -= Poco::Delegate<BubbleApp, Poco::EventArgs>(this, &BubbleApp::onShutdownRequested);
+        _gameplay_controller->screenChangeRequested -= Poco::Delegate<BubbleApp, ScreenType>(this, &BubbleApp::onScreenChangeRequested);
     }
 
     void BubbleApp::onShutdownRequested(const void* sender, Poco::EventArgs& args)
@@ -122,6 +127,9 @@ namespace bubble
             break;
         case ScreenType::Settings:
             _current_controller = _settings_controller;
+            break;
+        case ScreenType::Gameplay:
+            _current_controller = _gameplay_controller;
             break;
         default:
             poco_warning(_logger, "Something's weird in BubbleApp::onScreenChangeRequested");

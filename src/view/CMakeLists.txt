@@ -22,6 +22,7 @@ endif()
 add_library(${VIEWLIB} view.cpp
                        mainmenuview.cpp
                        settingsview.cpp
+                       gameplayview.cpp
                        checkbox.cpp)
 
 target_link_libraries(${VIEWLIB} ${SFML_WINDOW_LIB} ${SFML_SYSTEM_LIB} ${SFML_GRAPHICS_LIB})

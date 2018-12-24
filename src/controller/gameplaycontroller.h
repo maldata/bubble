@@ -7,11 +7,11 @@
 
 namespace bubble
 {
-    class GameController : public Controller
+    class GameplayController : public Controller
     {
     public:
-        GameController(sf::RenderWindow& window);
-        virtual ~GameController();
+        GameplayController(sf::RenderWindow& window);
+        virtual ~GameplayController();
 
         virtual void handleEvents(EventList& list) override;
     };
