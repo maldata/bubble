@@ -14,6 +14,9 @@ namespace bubble
         virtual ~MainMenuController();
 
         virtual void handleEvents(EventList& list) override;
+
+        Poco::BasicEvent<Poco::EventArgs> playButtonClicked;
+        Poco::BasicEvent<Poco::EventArgs> settingsButtonClicked;
     };
 }
 

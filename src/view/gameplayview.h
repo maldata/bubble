@@ -12,7 +12,7 @@ namespace bubble
         virtual ~GameplayView();
 
         void updateScreen() override;
-        void handleMouseMove(int x, int y) override;
+        void handleNewMousePosition(int x, int y) override;
         void handleLeftClick(int x, int y) override;
     };
 }

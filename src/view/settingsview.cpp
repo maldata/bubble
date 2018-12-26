@@ -19,7 +19,7 @@ namespace bubble
         _window.display();
     }
 
-    void SettingsView::handleMouseMove(int x, int y)
+    void SettingsView::handleNewMousePosition(int x, int y)
     {
 
     }

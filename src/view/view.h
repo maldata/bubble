@@ -26,7 +26,7 @@ namespace bubble
         void uninitialize();
         int getEvents(EventList& list);
         virtual void updateScreen() = 0;
-        virtual void handleMouseMove(int x, int y) = 0;
+        virtual void handleNewMousePosition(int x, int y) = 0;
         virtual void handleLeftClick(int x, int y) = 0;
 
         Poco::BasicEvent<Poco::EventArgs> windowClosed;

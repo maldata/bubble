@@ -14,11 +14,14 @@ namespace bubble
         virtual ~MainMenuView();
 
         void updateScreen() override;
-        void handleMouseMove(int x, int y) override;
+        void handleNewMousePosition(int x, int y) override;
         void handleLeftClick(int x, int y) override;
 
+        Poco::BasicEvent<Poco::EventArgs> playButtonClicked;
+        Poco::BasicEvent<Poco::EventArgs> settingsButtonClicked;
+
     private:
-        Button _play_button;
+        Poco::SharedPtr<Button> _play_button;
         Button _settings_button;
     };
 }

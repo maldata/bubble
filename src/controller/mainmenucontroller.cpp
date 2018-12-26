@@ -45,7 +45,7 @@ namespace bubble
             }
             if (event.type == sf::Event::MouseMoved)
             {
-                _view->handleMouseMove(event.mouseMove.x, event.mouseMove.y);
+                _view->handleNewMousePosition(event.mouseMove.x, event.mouseMove.y);
             }
             if ((event.type == sf::Event::MouseButtonPressed) && (event.mouseButton.button == sf::Mouse::Left))
             {

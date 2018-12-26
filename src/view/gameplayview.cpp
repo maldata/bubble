@@ -19,7 +19,7 @@ namespace bubble
         _window.display();
     }
 
-    void GameplayView::handleMouseMove(int x, int y)
+    void GameplayView::handleNewMousePosition(int x, int y)
     {
 
     }
