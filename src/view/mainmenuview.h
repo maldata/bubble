@@ -13,6 +13,8 @@ namespace bubble
         MainMenuView(sf::RenderWindow& window, Poco::SharedPtr<Model> model);
         virtual ~MainMenuView();
 
+        void initialize() override;
+        void uninitialize() override;
         void updateScreen() override;
         void handleNewMousePosition(int x, int y) override;
         void handleLeftClick(int x, int y) override;

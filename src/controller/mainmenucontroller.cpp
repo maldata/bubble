@@ -1,5 +1,9 @@
 #include "mainmenucontroller.h"
+
 #include "mainmenuview.h"
+
+#include <Poco/EventArgs.h>
+#include <Poco/Delegate.h>
 
 namespace bubble
 {
@@ -8,6 +12,9 @@ namespace bubble
     {
         _model = new Model();
         _view = new MainMenuView(window, _model);
+
+        MainMenuView* main_menu_view = dynamic_cast<MainMenuView*>(_view.get());
+        main_menu_view->playButtonClicked += Poco::Delegate<MainMenuController, Poco::EventArgs>(this, &MainMenuController::onPlayButtonClicked);
     }
 
     MainMenuController::~MainMenuController()
@@ -52,5 +59,12 @@ namespace bubble
                 _view->handleLeftClick(event.mouseButton.x, event.mouseButton.y);
             }
         }
+    }
+
+    void MainMenuController::onPlayButtonClicked(const void* sender, Poco::EventArgs& args)
+    {
+        poco_information(_logger, "Main menu controller knows the play button was clicked.");
+        ScreenType next_screen = ScreenType::Gameplay;
+        screenChangeRequested.notify(this, next_screen);
     }
 }

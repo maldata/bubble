@@ -13,6 +13,19 @@ namespace bubble
 
     }
 
+    void MainMenuView::initialize()
+    {
+        View::initialize();
+
+        _play_button->setButtonState(ButtonState::DEFAULT);
+        _settings_button.setButtonState(ButtonState::DEFAULT);
+    }
+
+    void MainMenuView::uninitialize()
+    {
+        View::initialize();
+    }
+
     void MainMenuView::updateScreen()
     {
         _window.clear(sf::Color::White);

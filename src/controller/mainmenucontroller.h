@@ -5,6 +5,8 @@
 #include "../view/view.h"
 #include "../model/model.h"
 
+#include <Poco/EventArgs.h>
+
 namespace bubble
 {
     class MainMenuController : public Controller
@@ -15,8 +17,11 @@ namespace bubble
 
         virtual void handleEvents(EventList& list) override;
 
-        Poco::BasicEvent<Poco::EventArgs> playButtonClicked;
-        Poco::BasicEvent<Poco::EventArgs> settingsButtonClicked;
+        Poco::BasicEvent<Poco::EventArgs> gameRequested;
+        Poco::BasicEvent<Poco::EventArgs> settingsRequested;
+
+    private:
+        void onPlayButtonClicked(const void* sender, Poco::EventArgs& args);
     };
 }
 

@@ -22,8 +22,8 @@ namespace bubble
         View(sf::RenderWindow& window, Poco::SharedPtr<Model> model);
         virtual ~View();
 
-        void initialize();
-        void uninitialize();
+        virtual void initialize();
+        virtual void uninitialize();
         int getEvents(EventList& list);
         virtual void updateScreen() = 0;
         virtual void handleNewMousePosition(int x, int y) = 0;
