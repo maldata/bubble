@@ -5,7 +5,7 @@ namespace bubble
     MainMenuView::MainMenuView(sf::RenderWindow& window, Poco::SharedPtr<Model> model)
         : View(window, model)
     {
-        _play_button = new Button(sf::Vector2f(240, 48), "PLAY!");
+        _play_button = new Button(240, 48, "PLAY!");
     }
 
     MainMenuView::~MainMenuView()
@@ -17,6 +17,7 @@ namespace bubble
     {
         View::initialize();
 
+        // TODO: check the cursor position and set the button states accordingly
         _play_button->setButtonState(ButtonState::DEFAULT);
         _settings_button.setButtonState(ButtonState::DEFAULT);
     }

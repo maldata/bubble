@@ -22,7 +22,7 @@ namespace bubble
     class Button : public sf::Drawable
     {
     public:
-        Button(const sf::Vector2f& size = sf::Vector2f(0, 0), std::string label = "");
+        Button(unsigned int width = 0, unsigned int height = 0, std::string label = "");
         virtual ~Button();
 
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

@@ -6,39 +6,39 @@
 
 namespace bubble
 {
-    Button::Button(const sf::Vector2f& size, std::string label)
+    Button::Button(unsigned int width, unsigned int height, std::string label)
     {
         _button_state = ButtonState::DEFAULT;
 
         // See here: https://www.sfml-dev.org/documentation/2.5.1/classsf_1_1RenderTexture.php
 
         _default_texture = new sf::RenderTexture();
-        _default_texture->create(size.x, size.y);
+        _default_texture->create(width, height);
         _default_texture->clear(sf::Color::Transparent);
 
         _hover_texture = new sf::RenderTexture();
-        _hover_texture->create(size.x, size.y);
+        _hover_texture->create(width, height);
         _hover_texture->clear(sf::Color::Transparent);
 
-        sf::RectangleShape default_rect(sf::Vector2f(size.x, size.y));
+        sf::RectangleShape default_rect(sf::Vector2f(width, height));
         default_rect.setFillColor(sf::Color::Cyan);
-        sf::RectangleShape hover_rect(sf::Vector2f(size.x, size.y));
+        sf::RectangleShape hover_rect(sf::Vector2f(width, height));
         hover_rect.setFillColor(sf::Color::Blue);
 
         sf::Font font;
         font.loadFromFile("/usr/share/fonts/TTF/DejaVuSans.ttf");
-        sf::Text tmp;
-        tmp.setFont(font);
-        tmp.setString(label);
-        tmp.setFillColor(sf::Color::Red);
-        tmp.setCharacterSize(24);
+        sf::Text text;
+        text.setFont(font);
+        text.setString(label);
+        text.setFillColor(sf::Color::Red);
+        text.setCharacterSize(24);
 
         _default_texture->draw(default_rect);
-        _default_texture->draw(tmp);
+        _default_texture->draw(text);
         _default_texture->display();
 
         _hover_texture->draw(hover_rect);
-        _hover_texture->draw(tmp);
+        _hover_texture->draw(text);
         _hover_texture->display();
 
         _default_sprite = new sf::Sprite(_default_texture->getTexture());
