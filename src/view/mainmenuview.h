@@ -24,7 +24,7 @@ namespace bubble
 
     private:
         Poco::SharedPtr<Button> _play_button;
-        Button _settings_button;
+        Poco::SharedPtr<Button> _settings_button;
     };
 }
 

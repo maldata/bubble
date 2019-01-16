@@ -27,6 +27,7 @@ namespace bubble
 
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
         void setButtonState(ButtonState new_state);
+        void setPosition(int x, int y);
         bool contains(int x, int y);
 
     private:

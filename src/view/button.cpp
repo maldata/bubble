@@ -42,10 +42,10 @@ namespace bubble
         _hover_texture->display();
 
         _default_sprite = new sf::Sprite(_default_texture->getTexture());
-        _default_sprite->setPosition(200, 200);
+        // _default_sprite->setPosition(200, 200);
 
         _hover_sprite = new sf::Sprite(_hover_texture->getTexture());
-        _hover_sprite->setPosition(200, 200);
+        // _hover_sprite->setPosition(200, 200);
     }
 
     Button::~Button()
@@ -71,6 +71,12 @@ namespace bubble
         {
             _button_state = new_state;
         }
+    }
+
+    void Button::setPosition(int x, int y)
+    {
+        _default_sprite->setPosition(x, y);
+        _hover_sprite->setPosition(x, y);
     }
 
     bool Button::contains(int x, int y)
