@@ -47,7 +47,7 @@ set(CMAKE_BUILD_TYPE Debug)
 #set(SOURCE src/main.cpp
 #           src/bubbleapp.cpp)
 
-set(SOURCE src/main.cpp src/screen.cpp)
+set(SOURCE src/main.cpp src/screen.cpp src/pointer.cpp)
 
 set(BUBBLE_EXE ${PROJECT_NAME})
 

@@ -3,6 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "pointer.h"
+
 namespace bubble
 {
 
@@ -17,8 +19,7 @@ public:
 
 private:
     sf::RenderWindow& window;
-    int cursor_x = 0;
-    int cursor_y = 0;
+    Pointer pointer;
 };
 
 }
